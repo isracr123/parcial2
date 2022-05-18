@@ -15,7 +15,7 @@ import {
 
 // 2
 const httpLink = createHttpLink({
-  uri: 'http://34.125.152.192/graphql/'
+  uri: 'https://api.spacex.land/graphql/'
 });
 
 // 3
@@ -30,7 +30,6 @@ root.render(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,
-  
 );
 
 
@@ -38,3 +37,7 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+
+

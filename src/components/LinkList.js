@@ -6,43 +6,30 @@ import { useQuery, gql } from '@apollo/client';
 const LinkList = () => {
 
 const FEED_QUERY = gql`
-  {
-     links {
-       id
-       url
-       description    
-     }
-    
+{
+  launchesPast(limit: 10) {
+    launch_date_local
+    mission_name
   }
+  ships {
+    name
+    home_port
+    image
+  }
+}
 `
-;
-  const linksToRender = [
-    {
-      id: 'link-id-1',
-      description:
-        'Prisma gives you a powerful database toolkit 😎',
-      url: 'https://prisma.io'
-    },
-    {
-      id: 'link-id-2',
-      description: 'The best GraphQL client',
-      url: 'https://www.apollographql.com/docs/react/'
-    },
-    {
-      id: 'link-id-3',
-      description: 'google',
-      url: 'https://www.google.com/'
-    }
-  ];
 
   const { data } = useQuery(FEED_QUERY);
 
   return (
-    <div>
+    <div className='bg-black'>
+      <h1 className='text-center text-4xl text-white bg-black p-10'>
+        SPACEX: Lista de barcos
+      </h1>
       {data && (
         <>
-          {data.links.map((link) => (
-            <Link key={link.id} link={link} />
+          {data.ships.map((ships) => (
+            <Link name={ships.name} home={ships.home_port} image={ships.image}/>
           ))}
         </>
       )}
